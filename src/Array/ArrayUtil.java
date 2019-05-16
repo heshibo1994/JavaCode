@@ -34,4 +34,18 @@ public class ArrayUtil {
     public int getMin() {
         return min;
     }
+
+    public static void printArray(int [] temp){//输出
+        for (int i :temp){
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+    public static void transform(int data[]){
+        for (int i =0;i<data.length/2;i++){
+            int temp = data[i];
+            data[i] = data[data.length-i-1] ;
+            data[data.length-i-1] = temp;
+        }
+    }
 }
