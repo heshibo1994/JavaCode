@@ -34,6 +34,8 @@ public class test1 {
             }
             System.out.println();
         }
+        //数组的函数方法
+		//数组的引用
 
     }
 }
