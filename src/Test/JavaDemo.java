@@ -1,3 +1,5 @@
+package Test;
+
 public class JavaDemo{
     public static void main(String[]args){
         Person p = new Person("he",21);

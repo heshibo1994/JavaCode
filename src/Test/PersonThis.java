@@ -1,9 +1,18 @@
-public class Person {
+package Test;
+
+public class PersonThis {
     private String name;
     private int age;
-    public Person(String n,int a){
-        name = n;
-        age = a;
+    public PersonThis(){
+        System.out.println("生产一个新的对象");
+    }
+    public PersonThis(String name){
+        this();
+        this.name = name;
+    }
+    public PersonThis(String name,int age){
+        this(name);
+        this.age = age;
     }
     public void setName(String n){
         name = n;

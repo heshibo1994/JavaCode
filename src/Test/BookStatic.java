@@ -1,3 +1,5 @@
+package Test;
+
 public class BookStatic {
     private String name;
     private static int id = 0;

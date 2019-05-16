@@ -1,3 +1,5 @@
+package Test;
+
 public class PersonStatic {
     private String name;
     private int age;

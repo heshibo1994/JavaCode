@@ -1,3 +1,5 @@
+package Test;
+
 public class Emp {
     private  long empo;     //工号
     private  String name;   //姓名
