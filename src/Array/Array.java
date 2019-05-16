@@ -1,4 +1,5 @@
-public class test1 {
+package Array;
+public class Array {
     public static  void main(String args[]){
         //字符和字符串
         char c =  'A';
@@ -34,8 +35,29 @@ public class test1 {
             }
             System.out.println();
         }
-        //数组的函数方法
-		//数组的引用
 
+        //数组和方法
+        int d [] = initArray();//初始化数组
+        printArray(d);
+        changeArray(d);
+        printArray(d);
+
+    }
+    public static void printArray(int [] temp){//输出
+        for (int i :temp){
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+
+    public static void changeArray(int [] temp) {//修改数组
+        System.out.println("进行修改");
+        for (int i = 0;i<temp.length;i++) {
+            temp[i] *=2;
+        }
+    }
+    public static int [] initArray(){//初始化
+        int arr [] = new int []{1,2,3,7,8,9};
+        return arr;
     }
 }
