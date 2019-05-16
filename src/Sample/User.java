@@ -16,6 +16,6 @@ public class User {
         return User.count;
     }
     public String getInfo(){
-        return "第"+this.count+"名用户 "+"名称："+this.uid+"  密码："+this.password;
+        return "第"+this.count+"名用户   "+"名称："+this.uid+"  密码："+this.password;
     }
 }
