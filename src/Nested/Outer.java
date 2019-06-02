@@ -3,17 +3,22 @@ package Nested;
 import java.io.OutputStream;
 
 public class Outer {
-    private String outmessage = "heshibo";
+    private static  final  String  OUTMESSAGE = "heshibo";
     public void fun(){
-        Innner in = new Innner();
+        Inner in = new Inner();
         in.print();
         System.out.println(in.inmessage);
     }
-    class Innner{
+    class Inner{
         private String inmessage  = "boshihe";
         public void print(){
-            System.out.println(Outer.this.outmessage);
+            System.out.println(Outer.this.OUTMESSAGE);
+        }
+    }
 
+    static class Inner1{
+        public void print(){
+            System.out.println(Outer.OUTMESSAGE);
         }
     }
 }
