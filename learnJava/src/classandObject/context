@@ -1,0 +1,563 @@
+2、Java最大的特点：面向对象的编程设计。
+其他：面向过程编程，函数式编程。
+面向过程是指面对一个问题的解决方案，更多的情况不会做出重用的设计；
+面向对象更加侧重于模块化设计，会考虑到重用配置，对于整个面向对象更多的考虑标准。
+特性：
+    封装性：内部的操作对外部不可见，当内部的操作都不可直接使用才是安全的。
+    继承性：在已有结构基础上再继续进行功能的扩充。
+    多态性：是在继承的基础上扩充而来的概念，指的是类型的转化处理。
+面向对象程序开发的一般过程：
+    OOA：面向对象分析
+    OOD：面向对象设计
+    OOP：面向对象编程
+
+3、面向对象的核心：类和对象
+类是对某一类事物的共性的抽象，对象描述的是一个具体的产物。
+类是一个模板，对象是类的一个实例，先有类再有对象。
+类的组成：
+    成员属性：
+    操作方法：定义对象具有的处理行为。方法时可以重复执行的代码
+对象的方法和属性都要在类的框架下使用。
+产生对象的方法：声明并实例化对象：类名称 对象名称 =  new 类名称()
+当获取了类的实例化对象后，就需要通过对象进行类中的操作调用，调用方法有两种
+    调用类中的属性：对象.属性
+    调用类中的方法：对象.方法（）
+
+5、对象的实例化操作初步分析：
+    Java中类属于引用数据类型，引用数据类型需要考虑到内存的管理，在进行操作时也会引起内存的变化
+    内存管理：常用的内存空间
+        堆内存：保存的是对象的具体信息，在程序之中堆内存的空间开辟通过new来完成。
+        栈内存：保存的一块内存的地址，通过地址找到堆内存，再找到对象的内容。
+=====
+pic1
+=====
+错误代码：
+    Person per1 = null;//声明并实例化对象
+    per1.age = 18;
+    per1.name = "KeRan";
+    per1.tell();
+Exception in thread "main" java.lang.NullPointerException
+	at classandObject.JavaDemo.main(JavaDemo.java:12)
+所有的代码对象必须在调用类中的属性或者方法的时候必须实例化完成后在可以执行。
+NullPointerException表示空指向异常，表示在没有堆内存开辟后产生的问题。
+
+6、类属于引用数据类型，同一块堆内存可以被不同的栈内存所指向，也可以跟换指向。
+    Person per1 = new Person();//声明并实例化对象
+    per1.age = 18;
+    per1.name = "KeRan";
+    Person per2 = per1;//引用传递
+    per2.age = 80 ;
+    per1.tell();
+以上引用传递是直接在主方法之内的定义的，也可以通过方法实现引用传递。
+public static void change(Person temp){
+    temp.age = 90;
+}
+=====
+pic2
+=====
+7、引用与垃圾产生分析
+所有的引用传递本质是堆内存的调节，堆内存的调节不当，会产生垃圾。
+    Person per1 = new Person();
+    Person per2 = new Person();
+    per1.age = 20;
+    per2.age = 30;
+    per2 = per1;
+    per1.tell();//30
+以上过程也完成了引用传递的过程。
+=====
+pic3
+=====
+垃圾空间是指所有没有任何栈内存指向的堆内存空间，所有的垃圾会被GC（垃圾收集器）定期进行回收
+并释放无效内存。
+8、成员属性封装
+在类中的组成为属性和方法，方法一般都是对外提供服务的，所以不会进行封，但是对于属性而言，需要较高的
+安全性，一般都需要进行保护，此时就需要采用封装性对属性进行封装。
+    Person per = new Person();//声明并实例化对象
+    per.age = 18;//per.age = -18;
+    per.name = "KeRan";
+    per.tell();
+以上并没有对name和age两个属性进行封装处理，这样外部就可以直接对属性进行修改，
+现在通过private对属性进行封装，那么外部就不可以直接对内部属性进行修改。即对外部不可见，对内部还是可见的。
+错误代码：
+    public class Person {
+        private String name;
+        private int age;
+        public void tell(){
+            System.out.println("name: "+name+"age: "+age);
+        }
+    }
+    public static void main(String[] args) {
+        Person per = new Person();//声明并实例化对象
+        per.age = 18;
+        per.name = "KeRan";
+        per.tell();
+    }
+Error:(6, 12) java: age 在 classandObject.Person 中是 private 访问控制。
+如果在实际场景中，需要对类的内部属性进行访问，以setter和getter方法来实现。
+类中的属性一般都必须使用private封装。
+    public String getName() {return name; }
+    public void setName(String name) {this.name = name; }
+    public int getAge() {return age;}
+    public void setAge(int age) {this.age = age; }
+9、构造方法与匿名对象
+使用类的时候的一般步骤：
+    声明并实例化对象，实例化的对象属性中并没有热呢的数据存在
+    通过一系列的setter和getter来进行内容设置。
+为了解决对象初始化的问题，通过构造方法来实例化对象中的属性。
+构造方法的定义要求：
+    构造方法和类型一致；
+    无任何返回值；
+    构造方法在使用关键字new的实例化对象的时候自动调用；
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    //声明并实例化对象
+    Person per = new Person("keren ",18);
+在Java程序中会考虑结构的完整性，所有的类都会提供构造方法，如果没有提供构造方法，那么程序会在编译时
+自动创造一个无参构造方法，如果明确创造了，默认的构造方法就不会自动创造了。
+构造方法为什么没有返回值？
+如过构造方法有返回值，那么该方法就会被认为是一个普通方法，构造方法是在类对象实例化的时候调用的
+普通方法是在类对象实例化产生之后调用的。
+构造方法的重载(方法名相同，参数类型和个数不同)：在对多个构造函数重载时，尽可能按照参数个数来写。
+匿名对象：        new Person("apple",29).tell();
+该对象没有任何的引用名称，所以对象使用一次以后就将成为垃圾，所有的垃圾被GC进行回收和释放。
+
+10  this关键字
+    当前类中的属性：this.属性
+            利用构造方法和setter方法都可以对属性进行赋值
+            public Person(String name, int age) {
+                this.name = name;
+                this.age = age;
+                }
+            在Java中{}作为一个结构体的边界符号，在程序中对变量使用时，都会以{}为查找边界；
+            按照就近取用原则，此时构造方法并没有访问类中的属性，因此要加上this来对区分属性
+            和参数的区别。
+    当前类中的方法：this.方法名称（）
+            对构造方法的调用:this（）对于构造方法的调用，放在构造方法中执行
+                public Person(){
+                        System.out.println("doing something");
+                }
+                public Person(String name) {
+                    this();
+                    this.name = name ;
+                }
+                public Person(String name, int age) {
+                    this(name);
+                    this.age = age;
+                }
+                构造方法的this（）只能放在构造方法的首行
+                构造方法互相调用时必须保留出口，避免递归调用的问题。
+            对普通方法的调用:this.方法（）
+12 简单Java类
+    描述某一类信息的程序类，在该类中没有特别复杂的逻辑操作，只作为一种信息存储的媒介存在
+        类名称有一定的具体的含义
+        类中的所有属性必须private进行封装，封装后必须提供setter/getter
+        类中可以提供多个构造方法，但必须保留无参构造
+        类中不允许出现输出语句，所有内容的获取必须返回
+13 声明static属性
+    static修饰属性
+        在一个类中，属性一旦定义，内容都交由各自的堆内存空间保存，每一个对象保存自己各自的属性。
+        当对象的数量极大，就会面临重复保存，修改不方便的问题。
+        利用static修饰属性，可以让该属性变成公共属性，一次修改，全部变化。
+        public class Person {
+            private String name;
+            private int age;
+            static String country = "中华民国";
+        }
+        country是一个共同的属性，在修改时最好直接使用类来访问，static属性可以直接由类名直接调用。
+            Person p1 = new Person("keran3", 20);
+            Person p2 = new Person("keran2", 20);
+            Person p3 = new Person("keran1", 20);
+            Person.country = "中国";
+            System.out.println(p1.toString());
+ ===
+ pic4
+ ===
+        static属性可以在没有实例化对象时直接调用，直接通过类的名称调用
+            System.out.println(Person.country);
+            Person.country = "中国";
+            Person p = new Person("keran3", 20);
+            System.out.println(p);
+    static修饰方法
+        static方法可以直接通过类名调用。
+        static方法只可以调用static属性或者static方法。
+        报错代码
+            public static void setCountry(String c) {
+                country = c;
+                name = "kekeke";
+            }
+        Error:(15, 9) java: 无法从静态上下文中引用非静态 变量 name
+        非static方法可以调用static属性或者static方法。
+        所有的static定义的属性和方法都可以在没有实例化对象的前提下使用，而所有的static定义的属性和方法都必须在实例化对象的前提下使用。
+16代码块
+由{}定义的代码成为代码块
+    普通代码块:定义在一个普通方法的代码
+        {
+            int x = 10;
+            System.out.println("x1: "+x);
+        }
+        int x = 100;
+        System.out.println("x2: "+x);
+        在Java开发中相同名称的变量不能在同一个方法中存在，但是可以通过{}进行分界。
+        可以在一个方法之中进行一些结构的拆分，以防止相同变量名称所带来的互相影响。
+    构造代码块：定义在一个类中的，优先于构造方法先执行
+    静态代码块：使用static关键字定义的代码块，静态代码块优先于构造代码块，并且无论有多少个对象初始化都只执行一次。
+25数组
+一组相关变量的集合，数组的使用会牵扯到内存的分配
+    数组的初始化：
+        动态初始化：数组的的每个元素为默认值
+            数据类型 数组名称 [] = new 数据类型[长度]；
+            数据类型 [] 数组名称 = new 数据类型[长度]；
+                int data [] = new int [3];
+                System.out.println(data[0]);//默认值
+                System.out.println(data[3]);//数组越界
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3
+        静态初始化：在定义时就赋值
+            数据类型 数组名称 [] = {N1，N2.......Nn}；
+            数据类型 数组名称 [] = new 数据类型 {N1，N2.......Nn}；
+    数组的内存分析：
+        int data [] = new int [3];
+        data[0]  = 10;
+        data[1]  = 20;
+        data[2]  = 30;
+===
+pic5
+===
+        数组也属于引用数据类型,一定也要为其开辟堆内存空间才可以使用（先new）。
+            int data [] = new int [] {10,20,30};
+            int temp [] = data;
+            temp[0] = 99;
+            System.out.println(data[0]);
+===
+pic6
+===
+    foreach迭代输出，减轻对数组下标的依赖，可以直接将数组的元素放在变量里，避免使用下标的形式获取元素。
+    for（数据类型 变量 ：数组|集合）{}
+        for(int temp:data){
+            System.out.println(temp);
+        }
+    二维数组：处理多行多列的数组，此时描述一个数据需要行小标和纵下表
+        int data[][] = new int[][]{{1, 2, 3}, {2, 3, 4}};
+        for (int i = 0; i < data.length; i++)
+            for (int j = 0; j < data[i].length; j++) {
+                System.out.println(data[i][j]);
+            }
+        }
+    数组和方法：通过方法对数组进行引用传递
+        定义方法返回数组，修改数组：
+             public static void main(String[] args) {
+                int data[] = initArray();
+                changeArrat(data);
+                printArray(data);
+            }
+
+            private static void changeArrat(int[] data) {
+                for (int i = 0;i<data.length;i++) data[i] *= 2;
+            }
+            private static void printArray(int[] data) {
+                for (int temp:data){
+                    System.out.println(temp);
+                }
+            }
+
+            private static int[] initArray() {
+                int arr [] = new int []{1,2,3,4,5};
+                return arr;
+            }
+===
+pic7
+===
+    数组的相关方法:
+        排序：java.util.Arrays.sort(data);
+        拷贝：System.arraycopy(源数组，源数组开始点，目标数组，目标数组开始点，拷贝长度)
+    方法可变参数：使用这种方法可以避免数组的使用
+        public static int sum(int ... data){
+            int sum = 0;
+            for(int temp:data){
+                sum+=temp;
+            }
+            return sum;
+        }
+    对象数组：将类作为数据类型
+        动态初始化：类 对象数组名  [] = new 类 [长度]
+        静态初始化：类 对象数组名  [] = new 类 []{对象1，对象2.......}
+            Person per [] = new Person[]{
+                new Person("keran",23),
+                new Person("keran",24),
+                new Person("keran",25),
+            };
+            for (int i= 0;i<per.length;i++){
+                System.out.println(per[i].toString());
+            }
+
+35 引用传递
+通过面向对象的设计来解决关系转化的问题
+    类关联结构
+        // 声明对象并设置彼此的关系
+        Person person = new Person("keran",24);
+        Car car = new Car("SUV",30);
+        person.setCar(car);
+        car.setPerson(person);
+        // 根据关系获取数据
+        System.out.println(person.getCar().toString());
+        System.out.println(car.getPerson().toString());
+    自身关联
+        // 声明对象并设置彼此的关系
+        Person person = new Person("keran",24);
+        Person childA = new Person("a",20);
+        Person childB = new Person("b",21);
+        childA.setCar(new Car("cara",2));
+        childB.setCar(new Car("carb",3));
+        Car car = new Car("SUV",30);
+        person.setCar(car);
+        person.setChildren(new Person[]{childA,childB});
+        car.setPerson(person);
+        // 根据关系获取数据
+        System.out.println(person.getCar().toString());
+        System.out.println(car.getPerson().toString());
+        for(Person p : person.getChildren()){
+            System.out.println(p.toString());
+            System.out.println(p.getCar().toString());
+        }
+    数据表和简单Java类的映射转换
+        数据实体表设计 = 类的定义
+        表中的字段 = 类的成员属性
+        表的外键关联 = 引用实现
+        表的一行记录 = 类的一个实例化对象
+        表的多行记录 = 对象数组
+        程序中只需要考虑实体表的设计，对于中间的访问记录信息表不要求进行转化处理。
+        代码实例：用户的授权管理：-----一个用户可以拥有多个角色，一个角色可以有多个用户
+                                 -----一个角色可以拥有多个权限
+            Member memberA = new Member("alibaba","mema");
+            Member memberB = new Member("baidu","memb");
+            Role roleA = new Role(1l,"系统配置");
+            Role roleB = new Role(2l,"备份管理");
+            Role roleC = new Role(3l,"人事管理");
+            Privilege priA = new Privilege(1000l,"系统初始化");
+            Privilege priB = new Privilege(1001l,"系统还原");
+            Privilege priC = new Privilege(1002l,"系统环境修改");
+            Privilege priD = new Privilege(2000l,"备份员工数据");
+            Privilege priE = new Privilege(2001l,"备份部门数据");
+            Privilege priF = new Privilege(2002l,"备份公文数据");
+            Privilege priG = new Privilege(3000l,"增加员工");
+            Privilege priH = new Privilege(3001l,"编辑员工");
+            Privilege priI = new Privilege(3002l,"浏览员工");
+            Privilege priJ = new Privilege(3003l,"员工离职");
+            //增加角色和权限的对应关系
+            roleA.setPrivileges(new Privilege[]{priA,priB,priC});
+            roleB.setPrivileges(new Privilege[]{priD,priE,priF});
+            roleC.setPrivileges(new Privilege[]{priG,priH,priI,priJ});
+            //增加权限与角色对应
+            priA.setRole(roleA);
+            priB.setRole(roleA);
+            priC.setRole(roleA);
+            priD.setRole(roleB);
+            priE.setRole(roleB);
+            priF.setRole(roleB);
+            priG.setRole(roleC);
+            priH.setRole(roleC);
+            priI.setRole(roleC);
+            priJ.setRole(roleC);
+            //增加用户与角色的对应关系
+            memberA.setRoles(new Role[]{roleA,roleB});
+            memberB.setRoles(new Role[]{roleA,roleB,roleC});
+            roleA.setMembers(new Member[]{memberA,memberB});
+            roleB.setMembers(new Member[]{memberA,memberB});
+            roleC.setMembers(new Member[]{memberB});
+            //输出信息
+            System.out.println(memberB.toString());
+            for (Role r : memberB.getRoles()){
+                System.out.println(r.toString());
+                for (Privilege p:r.getPrivileges()){
+                    System.out.println(p.toString());
+                }
+            }
+49字符串
+在Java中所有的字符串都是用双引号来定义的
+String类不是一种基本数据类型，利用JVM的支持制造了一种可以简单实用的S如图ring类
+    String的实例化
+        直接赋值进行实例化：
+            String s =  "hello,keran";
+            System.out.println(s);
+            利用直接赋值的方法可以实现同一个字符串的共享操作
+                    String str1 = "hello";
+                    String str2 = "hello";
+                    System.out.println(str1 == str2);//true
+            在Java的底层中，会提供字符串池,在直接赋值的方法中，对于字符串可以实现池数据的诸佛能够保存
+            如果有相同的数据定义时，可以减少定义，实现对象的重用，提升性能
+        利用构造方法进行实例化：
+            String ss = new String("keran,hello");
+            System.out.println(ss);
+            String sstr1 = new String("hello");
+            String sstr2 = new String("hello");
+            System.out.println(sstr1 == sstr2);//false
+            不会自动入池，可以手动使用intern()入池
+            String sstr1 = new String("hello").intern();
+            String sstr2 = new String("hello").intern();
+            System.out.println(sstr1 == sstr2);//true
+        String源码分析：
+        String 类之所以可以保存字符串主要是因为其中定义了一个数组，String中的每一个字符都保存在数组中
+        JDK1.9开始开始String中的保存的是字节数组
+                private final byte[] value;
+    String字符串比较
+            String s =  "hello,keran";
+            String ss = new String("keran,hello");
+            System.out.println(s==ss);\\false
+        以上结果为false，在Java中对字符串进行比较多使用strA.equals(strB)来实现
+            System.out.println(s.equals(ss));\\true
+        ==和equals的区别？
+            ==进行数值的比计较，如果用于对象，比较的是两个内存的地址是否相同
+            equals是类所提供的一种比较方法，可以直接进行字符串内容的比较
+    String字符串常量
+        任何使用“”定义的常量都是实现的String 类的匿名对象
+        在对字符串进行比较时，一般时间字符串常量写在equals前
+        假设写在后面，当比较对象为空时，会报错空指针错误
+                String sss = null;
+                System.out.println(sss.equals("keran"));
+                Exception in thread "main" java.lang.NullPointerException
+                    at testString.JavaDemo.main(JavaDemo.java:13)
+        写在后面则可以规避这种错误
+                System.out.println("keran".equals(sss));
+    String 对象池
+        对象池的使用主要是为了实现数据的共享。
+        静态常量池：程序在加载的时候，会自动将字符串，普通常量，类和方法的信息等等进行分配
+        运行时变量池：当一个程序加载时，可能存在的一些变量。
+                String strA = "hello,keran";
+                String strB = "hello," + "keran";
+                System.out.println(strA == strB);//true
+        静态常量池在加载时，会自动实现字符串的连接，然后入池
+                String str = "keran";
+                String strA = "hello,keran";
+                String strC = "hello,"+str;
+                System.out.println(strA == strC);//false
+        程序加载时并不确定str的内容，会认为其是变量。
+    String 字符串内容不可修改
+        因为String包含的是一个数组，数组的长度在定义时，就开辟好了内存，且开辟的内存是固定的。
+            String s1 = "hello ";
+            s1 += "keren";
+            System.out.println(s1);
+            以上过程只是改变s1的应用，并没有对字符串进行修改，且整个过程会产生垃圾。
+    String类的常用方法：
+        字符串和字符操作：
+            String​(byte[] bytes)
+            String​(char[] value)
+            public char[] toCharArray​()
+            public char charAt​(int index)
+                public static boolean isNumber(String str){
+                    char [] result = str.toCharArray();
+                    for(char ch:result){
+                        if (ch<0 ||ch>0)return false;
+                    }
+                    return true;
+                }
+        字符串和字节操作：
+            String​(byte[] bytes)
+            public byte[] getBytes​(String charsetName)
+                            throws UnsupportedEncodingException
+        字符串比较：
+            public boolean equals​(Object anObject)
+            public boolean equalsIgnoreCase​(String anotherString)
+            public int compareTo​(String anotherString)
+        字符串替换：
+            public String replaceAll​(String regex,String replacement)
+        字符串拆分：
+            public String[] split​(String regex)
+            public String[] split​(String regex,int limit)
+        字符串截取：
+            public String substring​(int beginIndex)
+            public String substring​(int beginIndex,int endIndex)
+        字符串格式化：
+            public static String format​(String format,Object... args)
+
+    Java Doc文档
+        类的完整定义
+        类的相关说明
+        类的成员属性
+        类的构造函数
+        类中的方法说明以及详细解释
+    Java主函数的组成分析：
+        public static void main(String[] args)
+        public:描述的是一种权限，主方法是所有的开始点，必须公开
+        static:程序的执行是通过类的名称进行完成的，表明此方法是由类直接调用的
+        void：主方法是起点，没有返回
+        main：系统自定义的方法名称
+        String[] args：字符串数组
+
+59 继承
+继承：扩充已有类的功能，在已有类的基础上进行扩充
+良好的代码风格：结构性合理，适用于维护，可重复性强。
+继承实现的目的：子类可以重用父类的结构，同时也强调了功能的扩充。
+虽然类的概念可以解决结构性的问题，但是会出现大量的重复代码，此时需要考虑类之间的关系问题。
+    继承的实现：
+        class 子类(派生类) extends 父类（超类）
+        继承实现的主要目的是子类可以重用父类中的作用，并且可以实现功能的扩充。
+        内存分析
+        ====
+        pic8
+        ===
+    子类对象实例化：
+        在对子类对象进行实例化时，一定要先实例化父类对象
+        public class Person1 {
+            public Person1(){
+                System.out.println("一个父类实例化对象产生");
+            }
+        }
+
+        public class Student1 extends Person1{
+            public Student1(){
+                System.out.println("一个子类实例化对象产生");
+            }
+        }
+        执行 new Student1();
+        结果：
+            一个父类实例化对象产生
+            一个子类实例化对象产生
+        即使没有父类对象的实例化，系统也会自己调用父类的构造方法（实例化父类）
+        实际上相当于子类的构造方法隐含super（）,表示子类构造调用父类构造，并且放在首行。
+        super（）相对于调用父类的无参构造，但是当父类中没有无参构造时，就必须利用super明确调用有参构造。
+        public class Person1 {
+            private String name;
+            public Person1(String name){
+                this.name = name;
+            }
+        }
+        public class Student1 extends Person1{
+            private String school;
+            public Student1(String name ,String school){
+                super(name);
+                this.school = school;
+            }
+        }
+        执行
+        new Student1("keran","tongji");
+        在实例化子类对象的同时一定要实例化父类对象
+    继承的相关限制：
+        Java中不允许多重继承，可以多层继承，但层次不该超过3层
+            class A extends B,C(多重继承)
+            class B extends A class C extends B(多层继承)
+        对于私有操作属于隐式继承，非私有属于显式继承
+            class A{
+                private String name;
+                public getName(){
+                    return name;
+                }
+            }
+            class B extends A{
+                public B(String name){
+                    this.name = name;
+                }
+                public void fun(){
+                    System.out.printIn(getName())
+                }
+            }
+            执行
+            A a = new A("a");
+            a.fun()
+
+
+
+
+
+
+
