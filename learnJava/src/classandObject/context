@@ -554,10 +554,91 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
             执行
             A a = new A("a");
             a.fun()
+63 方法覆写
+    子类可以继承父类中的所有方法，但是有些被继承的方法不适合直接应用。
+    对于需要保留父类中的方法或者属性名称的情况下就会发生覆写。
+        方法覆写的实现：
+            方法覆写：子类中的方法和父类中的完全一样，方法名，参数个数类型完全一致。
+            package testOverride;
 
+            public class Channel {
+                public void connect(){
+                    System.out.println("父类进行资源链接");
+                }
+            }
 
+            public class DatabaseChannel extends Channel {
+                public void connect(){
+                    System.out.println("子类进行数据库进行链接");
+                }
+            }
 
+            public class JavaDemo {
+                public static void main(String[] args) {
+                    DatabaseChannel channel = new DatabaseChannel();
+                    channel.connect();
+                }
+            }
+            由于实例化的是子类对象，所以调用方法一旦被覆写则调用覆写后的内容，否则将调用父类方法。
+            覆写的意义在于优化父类的功能.
+            由子类调用父类方法，需要添加super
+                public void connect(){
+                    super.connect();
+                    System.out.println("子类进行数据库进行链接");
+                }
+        方法覆写的限制：
+            public>default>private。覆写的方法权限必须更高。
+            父类中的方法使用了default，子类只能是public或者default
+            父类中的方法使用了public，子类只能是public
+            父类中的方法使用了private,则不涉及覆写方法。
+        覆写和重载的区别：
+            1         重载                      覆写
+            2   方法名相同，参数类型和个数不用    方法完全一致
+            3      无权限限制                        有限制权限
+            4      发生在一个类中                     发生在继承中
+        super和this的区别：
+            1          this                                        super
+            2      使用this先从本类中查找所需要的属性或者方法       直接查找父类
+                   本类不存在则从父类中调用
+            3       本类构造方法                                   父类构造方法
+            4        可以表示本类当前对象
+        final关键字：
+            终结器的概念，在Java中使用final关键字实现不能被覆写的类，不能被覆写的方法和常量
+            当父类中的某些方法不希望被子类覆写，则在方法前加final
+            在某些系统开发中，不希望某些属性被改变，则加final修饰关键字表示常量。
+            使用public static final定义全局常量，常量名大写。
 
-
-
-
+71 注解
+   ·Annotati注解，以注解的形式实现程序开发
+        在程序中定义所有需要用到的资源
+        在配置文件中定义资源（配置内容较少）
+        利用注解将代码和资源分割
+   ·@Override 在明确覆写方法上写，帮助检测错误
+   ·@Deprecated 过期声明。在开发过程中，新版本和老版本的不适应，不再建议使用的方法
+   ·@SuppressWarning 压制警告
+ 75 多态
+    ·基本概念
+        多态在继承性基础之上扩展出来的概念，可以实现父子类之间的互相转化
+        方法多态性：
+            重载：同一个方法根据不同的参数实现功能
+            覆写：同一个方法根据类的不同，执行不同功能
+        对象的多态性：
+            对象向上转型：父类 实例 = 子类实例（自动转化）
+            对象向下转型：子类 实例 = （子类）父类实例（强制转换）
+    ·对象向上转型
+        对象转型属于多态性，建立在继承的基础上
+        Message msg = new DatabaseMessage();
+        向上转型：可以对参数进行统一设计
+        public static void main(String[] args) {
+            fun(new DatabaseMessage());
+            fun(new WebServeMessage());
+        }
+        public static void fun(Message msg){
+            msg.print();
+        }
+    ·instanceof关键字
+        对象 instanceof 类  返回boolen型
+79 Object类
+    ·基本概念：
+        解决参数统一的问题
+        Object类不存在继承关系
