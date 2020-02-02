@@ -895,3 +895,135 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
     ·单例设计
         由于某些情况，要求该类只允许一个实例化对象，此时应该控制构造方法
         因为新的实例化对象的产生一定会经过构造方法。
+        public class Singleton {
+            private static final Singleton INSTANCE = new Singleton();
+            public static Singleton getInstance(){
+                return INSTANCE;}
+            private Singleton(){}
+            // 私有构造方法
+            public void print(){
+                System.out.println("aaa");
+            }
+        }
+        public static void main(String[] args) {
+            Singleton instance = null;
+            instance = Singleton.getInstance();
+            instance.print();
+        }
+        在一些情况下，如果程序启动，那么现在肯定需要一个类负责保存程序的加载信息。
+        特点：
+            构造方法私有化
+            类的内部提供static方法获取实例化对象
+    ·多例设计
+        package textSingleton;
+
+        public class Color {
+            public static final Color RED =new Color("RED");
+            public static final Color YELLOW =new Color("YELLOW");
+            public static final Color BLUE =new Color("BLUE");
+            private String title;
+            private Color(String title){
+                this.title = title;
+            }
+            public static Color getInstance(String color){
+                switch(color){
+                    case "red" :return RED;
+                    case "yellow" :return YELLOW;
+                    case "blue" :return BLUE;
+                }
+                return null;
+            }
+
+            @Override
+            public String toString() {
+                return this.title;
+            }
+        }
+
+        Color c = Color.getInstance("red");
+        System.out.println(c.toString());
+        多例设计和单例设计类似，都是在内提供static方法以返回实例化对象。
+
+112 枚举
+    ·定义
+        枚举用于定义有限个数的对象，属于多例设计模式
+        public enum Color {
+            RED,GREEN,YELLOW;
+        }
+        public static void main(String[] args) {
+            Color c = Color.RED;
+            System.out.println(c);
+
+            for (Color color: Color.values()){
+                System.out.println(color);
+            }
+        }
+    ·Enum类
+        enum和Enum关系
+        enum:关键字，用于定义枚举类
+        Enum：抽象类，使用enum定义的类就默认继承此类
+    ·定义枚举结构
+        public enum Color {
+            RED("red"),GREEN("greeb"),YELLOW("yellow");
+            private String title;
+            private Color(String title){
+                this.title = title;
+            }
+            public String toStrint(){
+                return this.title;
+            }
+        }
+116 异常
+    ·基本定义
+        导致程序中断执行的一种指令流,当程序错误后，整个程序不会按照既定的方式进行执行，而是中断了执行。
+        public static void main(String[] args) {
+            System.out.println("程序开始");
+            System.out.println("程序计算："+(10/0));
+            System.out.println("程序结束");
+        }
+        Exception in thread "main" java.lang.ArithmeticException: / by zero
+        	at testException.JavaDemo.main(JavaDemo.java:6)
+        为了保证程序出现了非致命错误之后，还可以正常完成程序功能。
+    ·异常处理
+        try{
+            //可能出现的异常语句
+        }[ catch（异常类型 异常对象）{
+            //异常处理
+        }]finally{
+            //无论是否异常都会执行。
+        }
+
+        public static void main(String[] args) {
+            System.out.println("程序开始");
+            try {
+                System.out.println("程序计算：" + (10 / 0));
+            }catch (ArithmeticException e){
+                System.out.println("异常对象："+e);
+            }
+            System.out.println("程序结束");
+        }
+        如果要获取完整的异常信息，则可以使用printStackTrace()。
+        e.printStackTrace();
+        java.lang.ArithmeticException: / by zero
+        	at testException.JavaDemo.main(JavaDemo.java:7)
+    ·处理多个异常
+        如果程序中的没有正确捕获，也会影响代码的运行
+        import testWrapper.Int;
+
+        public class JavaDemo {
+            public static void main(String[] args) {
+                System.out.println("程序开始");
+                try {
+                    int x = Integer.parseInt(args[0]);
+                    int y = Integer.parseInt(args[1]);
+                    System.out.println("程序计算：" + (x / y));
+                }catch (ArithmeticException e){
+                    e.printStackTrace();
+                }catch (NumberFormatException e){
+                    e.printStackTrace();
+                }catch (ArrayIndexOutOfBoundsException e){
+                    e.printStackTrace();
+                }
+                System.out.println("程序结束");
+            }
+        }
