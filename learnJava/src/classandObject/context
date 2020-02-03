@@ -1027,3 +1027,105 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
                 System.out.println("程序结束");
             }
         }
+    ·异常处理流程
+        1、在程序运行过程中产生异常，一旦产生异常以后将自动进行指定类型的异常类对象实例化处理。
+        2、如果没有异常处理的支持，则打印异常信息，退出当前程序
+        3、如果有异常处理的支持，产生的异常类实例化对象将被try语句捕获
+        4、try捕获到异常之后与catch中的异常依次进行比对，若没有匹配成功，该异常无法进行处理
+        5、不管时候执行异常处理，都会执行finally语句，但执行完finally的程序后进一步判断当前异常是否处理：
+            如果处理过了：则继续先后执行
+            如果没有处理：交由JVM继续处理。
+        对于 ArrayIndexOutOfBoundsException的继承关系
+            java.lang.Object
+                java.lang.Throwable
+                    java.lang.Exception
+                        java.lang.RuntimeException
+                            java.lang.IndexOutOfBoundsException
+                                java.lang.ArrayIndexOutOfBoundsException
+        Throwable的异常子类：
+            Error:程序中还没有执行时出现的错误，开发者无法处理
+            Exception：程序中出现的异常，开发者可以处理
+        异常产生的时候产生异常的实例化对象，按照对象的应用原则，可以直接向父类（向上）转型
+    ·throws和throw
+        throws：假设在定义方法时，应该告诉使用者这个方法可能产生什么样的异常，可以使用throws关键字进行异常类型的标注
+                public static int div(int x,int y) throws Exception{
+                    return x/y;
+                }
+                会报错：Error:(22, 38) java: 未报告的异常错误java.lang.Exception; 必须对其进行捕获或声明以便抛出
+                应该        try {
+                              System.out.println(MyMath.div(10, 2));
+                          } catch (Exception e) {
+                              e.printStackTrace();
+                          }
+        throws：在方法定义中使用，表示该方法可能产生的异常明确告诉调用处
+        throw：手动抛异常，在代码块中使用
+    ·RuntimeException
+        对于NumberFormatExceptio类的继承
+        java.lang.Object
+            java.lang.Throwable
+                java.lang.Exception
+                    java.lang.RuntimeException
+                        java.lang.IllegalArgumentException
+                            java.lang.NumberFormatExceptio
+        RuntimeException标注的异常可以不进行处理
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2 进程与线程
+    ·进程和进程
+        进程（在操作系统上的划分）
+            单进程：在同一时间只允许执行一个进程
+            多进程：在同一个时间，允许执行多个程序，进行资源的轮流抢占。
+        线程（在进程上的划分）
+            在进程基础上划分的更小的程序单元，线程是在进程基础上创建使用的，线程依赖进程的支持，
+            线程的启动速度要比进程快很多
+    ·Thread类：
+        在Java中专门的线程主体类进行线程的执行任务的定义，必须实现特定的接口或者继承特定的父类
+        继承Thread类实现多线程：一个类只要继承了此类就表示这个类为线程的主体类，但是还需要覆写run（）方法。
+        多线程要执行的方法都在run中定义
+        public class Mythread extends Thread {
+            private String title;
+            public Mythread(String title){
+                this.title = title;
+            }
+            @Override
+            public void run() {
+                for (int i = 0;i<10;i++){
+                    System.out.println(this.title+":"+i);
+                }
+            }
+        }
+        run方法不可以通过实例化对象的调用，必须使用start()方法。
+            new Mythread("线程A").run();
+            new Mythread("线程B").run();
+            会按照顺序执行，没有多线程执行
+            new Mythread("线程A").start();
+            new Mythread("线程B").start();
+            new Mythread("线程C").start();
+            会按照线程执行，但顺序不可控。
+
+

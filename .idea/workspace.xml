@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c9f72ee-78f6-46e0-b9ee-de54b773db20" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/learnJava/src/testEnum/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/testEnum/JavaDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/textSingleton/Color.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/textSingleton/JavaDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/textSingleton/Singleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/testException/MyMath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/testThread/Mythread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/testThread/ThreadDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnJava/src/classandObject/context" beforeDir="false" afterPath="$PROJECT_DIR$/learnJava/src/classandObject/context" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,20 +24,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/context">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="1009" column="30" selection-start-line="1009" selection-start-column="30" selection-end-line="1009" selection-end-column="30" />
+            <state relative-caret-position="351">
+              <caret line="1129" selection-start-line="1129" selection-end-line="1129" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java">
+        <entry file="file://$PROJECT_DIR$/learnJava/src/testThread/ThreadDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="10" column="50" lean-forward="true" selection-end-line="21" />
+            <state relative-caret-position="108">
+              <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/learnJava/src/testThread/Mythread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+              <folding>
+                <element signature="e#119#120#0" expanded="true" />
+                <element signature="e#152#153#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -67,6 +78,7 @@
       <find>get</find>
       <find>static</find>
       <find>func</find>
+      <find>start</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -75,9 +87,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/learnJava/src/testOverride/JavaDemo.java" />
-        <option value="$PROJECT_DIR$/learnJava/src/testOverride/DatabaseChannel.java" />
-        <option value="$PROJECT_DIR$/learnJava/src/testExtend/Message.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testPolymorphism/Message.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testPolymorphism/DatabaseMessage.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testPolymorphism/JavaDemo.java" />
@@ -125,6 +134,9 @@
         <option value="$PROJECT_DIR$/learnJava/src/testEnum/Color.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testEnum/JavaDemo.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java" />
+        <option value="$PROJECT_DIR$/learnJava/src/testException/MyMath.java" />
+        <option value="$PROJECT_DIR$/learnJava/src/testThread/Mythread.java" />
+        <option value="$PROJECT_DIR$/learnJava/src/testThread/ThreadDemo.java" />
         <option value="$PROJECT_DIR$/learnJava/src/classandObject/context" />
       </list>
     </option>
@@ -136,9 +148,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="949" />
-    <option name="width" value="980" />
-    <option name="height" value="1031" />
+    <option name="x" value="948" />
+    <option name="width" value="981" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -148,8 +160,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,6 +179,13 @@
               <item name="Java_Test" type="462c0819:PsiDirectoryNode" />
               <item name="learnJava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java_Test" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java_Test" type="462c0819:PsiDirectoryNode" />
+              <item name="learnJava" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="testThread" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -206,7 +225,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.ThreadDemo">
+    <configuration name="JavaDemo (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testException.JavaDemo" />
+      <module name="learnJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testException.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="JavaDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="textSingleton.JavaDemo" />
       <module name="learnJava" />
@@ -234,8 +266,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ThreadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="testThread.ThreadDemo" />
+      <module name="learnJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="testThread.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ThreadDemo" />
+        <item itemvalue="Application.JavaDemo (1)" />
         <item itemvalue="Application.JavaDemo" />
         <item itemvalue="Application.JavaDemo" />
       </list>
@@ -483,7 +530,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580638490658</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="easy_code">
+      <created>1580650219126</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1580650219126</updated>
+    </task>
+    <task id="LOCAL-00035" summary="easy_code">
+      <created>1580650391189</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1580650391189</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -497,9 +558,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.4907563" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.40662894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -508,7 +568,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8084074" visible="true" weight="0.37655416" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8084074" visible="true" weight="0.053285968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3963964" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -517,7 +577,6 @@
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.19159256" side_tool="true" weight="0.37655416" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3268206" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49312854" weight="0.32612613" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32902184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -527,9 +586,10 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" x="93" y="93" width="1095" height="495" id="Byte Code Viewer" order="7" type="FLOATING" />
       <window_info anchor="right" id="Maven" order="8" weight="0.32983023" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32902184" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4907563" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.4067227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -538,15 +598,15 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8084074" weight="0.37657657" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39786857" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8084074" visible="true" weight="0.37477478" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3963964" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3285968" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4995958" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.19159256" side_tool="true" weight="0.37655416" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3268206" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49312854" weight="0.32624114" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49312854" weight="0.32612613" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -556,6 +616,7 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" x="93" y="93" width="1095" height="495" id="Byte Code Viewer" order="7" type="FLOATING" />
       <window_info anchor="right" id="Maven" order="8" weight="0.32983023" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32902184" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -647,43 +708,6 @@
     </SUITE>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testOverride/DatabaseChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testOverride/Channel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#71#72#0" expanded="true" />
-            <element signature="e#89#90#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testExtend/Message.java" />
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testPolymorphism/Message.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="20" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-          <folding>
-            <element signature="e#73#74#0" expanded="true" />
-            <element signature="e#109#110#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testPolymorphism/DatabaseMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/learnJava/src/testPolymorphism/JavaDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -963,9 +987,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric/func.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric/func.java" />
     <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric/JavaDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -1038,13 +1060,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testEnum.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/testEnum.java" />
     <entry file="file://$PROJECT_DIR$/learnJava/src/textSingleton/JavaDemo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1072,17 +1088,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/testException/MyMath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/learnJava/src/testException/JavaDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="10" column="50" lean-forward="true" selection-end-line="21" />
+        <state relative-caret-position="81">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/JavaDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/context">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="1009" column="30" selection-start-line="1009" selection-start-column="30" selection-end-line="1009" selection-end-column="30" />
+        <state relative-caret-position="351">
+          <caret line="1129" selection-start-line="1129" selection-end-line="1129" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/testThread/ThreadDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="31" lean-forward="true" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../JDK-12/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41">
+          <caret line="787" column="28" selection-start-line="787" selection-start-column="28" selection-end-line="787" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/testThread/Mythread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="34" selection-start-line="2" selection-start-column="34" selection-end-line="2" selection-end-column="34" />
+          <folding>
+            <element signature="e#119#120#0" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
