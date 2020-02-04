@@ -1068,7 +1068,87 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
                         java.lang.IllegalArgumentException
                             java.lang.NumberFormatExceptio
         RuntimeException标注的异常可以不进行处理
+123 内部类
+    ·基本概念
+        内部类：在一个类的内部定义其他的类，独立且完善的一个结构。
+        public class Outer {
+            private String msg = "aaa";
+            public void fun(){
+                Inner inner = new Inner();
+                inner.print();
+            }
+                class Inner{
+                    public void print(){
+                        System.out.println(Outer.this.msg);
+                    }
+                }
+        }
+        public static void main(String[] args) {
+            Outer out = new Outer();
+            out.fun();
+        }
+        内部类的提出优势：
+            可以轻松的访问外部类中的私有属性
+            外部类也可以访问内部类的私有属性
+        内部类实例化对象的格式：
+            外部类.内部类 内部类对象 = new 外部类（）.new 内部类（）；
+            Outer.Inner in = new Outer().new Inner();
+        抽象类和接口也可以定义内部类
+        public class ChannelImpl implements IChannel {
+            @Override
+            public void send(IMessage msg) {
+                System.out.println(msg.getConnect());
+            }
+            class MessageImpl implements IMessage{
+                @Override
+                public String getConnect() {
+                    return "aaa";
+                }
+            }
+        }
+    ·static 定义内部类
+        static定义的内部类相当于独立的类，该类结构相当于独立类。
+        static定义的不管是类还是方法都只能访问static成员
+            public class Outer {
+                private static final String MSG = "aaa";
 
+                static class Inner{
+                        public void print(){
+                            System.out.println(Outer.MSG);
+                        }
+                    }
+            }
+            public static void main(String[] args) {
+                Outer.Inner in = new Outer.Inner();
+                in.print();
+            }
+            实例化对象：
+            外部类.内部类 内部类对象 = new 外部类.内部类（）
+    ·在方法中定义内部类
+        public class Outer {
+            private static final String MSG = "aaa";
+
+            static class Inner{
+                    public void print(){
+                        System.out.println(Outer.MSG);
+                    }
+                }
+        }
+        内部类可以直接方法外部类的私有属性，也可以访问传入参数。
+    ·匿名内部类
+        简化的内部类处理形式,一些接口的子类只要一个，以匿名内部类代替
+        IMessage msg = new IMessage(){
+            public void send(String str){
+                System.out.println(str);
+            }
+        };
+        msg.send("keran");
+
+
+
+131 Lambdahttp://www.44jjk.com/zpmp4.x?stype=zpmp4&zpmp4id=2035
+    ·定义
+        简化函数的代码开发，利用函数式编程可以避免面向对象中的繁琐问题
 
 
 
@@ -1127,5 +1207,8 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
             new Mythread("线程B").start();
             new Mythread("线程C").start();
             会按照线程执行，但顺序不可控。
-
-
+        在start()方法中会抛出IllegalThreadStateException()，每一个线程类只能启动一次，重复启动会抛出该异常
+        start()方法中调用了start0()函数
+            start0()中的关键字native，表示可以直接调用操作系统底层函数。
+    ·Runnable方法
+        避免Thread单继承的缺陷。
