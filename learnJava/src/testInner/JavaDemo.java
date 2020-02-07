@@ -14,5 +14,8 @@ public class JavaDemo {
             }
         };
         msg.send("keran");
+
+
+        IMessage.getInstance().send("hello.keran");
     }
 }

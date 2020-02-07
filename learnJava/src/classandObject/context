@@ -1143,36 +1143,70 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
             }
         };
         msg.send("keran");
+        在接口内部定义匿名内部内
+        public interface IMessage {
+            public void send(String msg);
+            public static IMessage getInstance(){
+                return new IMessage() {
+                    @Override
+                    public void send(String msg) {
+                        System.out.println(msg);
+                    }
+                };
+            }
+        }
+        匿名内部类和普通内部类相比较是一个没有名字的，只够使用一次的并且结构固定的子类。
 
-
-
-131 Lambdahttp://www.44jjk.com/zpmp4.x?stype=zpmp4&zpmp4id=2035
+131 Lambda
     ·定义
         简化函数的代码开发，利用函数式编程可以避免面向对象中的繁琐问题
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        SAM(single abstract method )原则：只有一个抽象方法，只有函数式接口才可以被Lambda表达
+        Lambda格式：
+            方法无参数：（）->{}
+                public static void main(String[] args) {
+                    IMessage msg = ()->{
+                        System.out.println("hello,keran ");
+                    };
+                    msg.send();
+                }
+            方法有参数：（参数，参数）->{}
+                IMath math = (t1,t2)->{
+                            return t1+t2;
+                        };
+                        System.out.println(math.add(1,4));
+            方法只有一行返回语句：（参数，参数）->语句
+                 IMath math = (t1,t2)-> t1+t2;
+            利用Lambda可以摆脱传统面向对象关于结构的限制，简化代码
+    ·方法引用
+        引用数据类型最大的特点是可以进行内存的指向处理，不同的方法名称可以描述同一方法
+            引用静态方法：类名称::static方法名称
+                public interface IFunction<P,R> {
+                    public R change(P p);
+                }
+                IFunction<Integer,String> fun = String::valueOf;
+                String str = fun.change(100);
+                System.out.println(str.length());
+                利用方法引用可以为一个方法定义多个名字
+            引用某个实例化方法：实例化对象::普通方法
+               IFunction<String> fun = "aaa"::toUpperCase;
+            引用特定类型的方法：特定类::普通方法
+                IFunction<String> fun = String::compare;
+            引用构造方法：类名称::new
+                IFunction<Person> fun = Person::new;
+    ·内建函数式接口
+        java.util.functio开发包中常见接口
+            功能形函数式接口：public R apply(T t)
+                Function<String,Boolean> f1 = "hello"::startsWith;
+                System.out.println(f1.apply("h"));
+            消费形函数式接口：public void accept(T t)
+                Consumer<String> f2 = System.out::println;
+                f2.accept("hello");
+            供给形函数式接口：public T get()
+                Supplier<String> f3 = "hello"::toUpperCase;
+                System.out.println(f3.get());
+            断言形函数式结构：public boolean test(T t)
+                Predicate<String> f4 = "hello"::equalsIgnoreCase;
+                System.out.println(f4.test("HeLLo"));
 
 
 2 进程与线程
@@ -1210,5 +1244,61 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
         在start()方法中会抛出IllegalThreadStateException()，每一个线程类只能启动一次，重复启动会抛出该异常
         start()方法中调用了start0()函数
             start0()中的关键字native，表示可以直接调用操作系统底层函数。
-    ·Runnable方法
+    ·Runnable接口
         避免Thread单继承的缺陷。
+        public class Mythread1 implements Runnable {
+            private String title;
+            public  Mythread1(String title){
+                this.title = title;
+            }
+            @Override
+            public void run() {
+                for(int i =0;i<10;i++){
+                    System.out.println(this.title+":"+i);
+                }
+            }
+        }
+        Thread threadA = new Thread(new Mythread1("runnableA接口"));
+        Thread threadB = new Thread(new Mythread1("runnableB接口"));
+        Thread threadC = new Thread(new Mythread1("runnableC接口"));
+        threadA.start();
+        threadB.start();
+        threadC.start();
+
+        Runnable接口使用了函数式接口定义，也可以直接使用Lambda表达式进行线程类的定义
+        for(int x = 0;x<3;x++){
+            String title = "线程对象-"+x;
+            Runnable run = ()->{
+                for (int y = 0 ;y<10;y++){
+                    System.out.println(title+":"+y);
+                }
+            };
+            new Thread(run).start();
+        }
+    ·Thread和Runnable接口关系
+        Thread类也是Runnable接口的子类，继承Thread类后覆写的还是Runnable的run方法。
+        多线程的设计中，使用代理设计模式，用户自定义有线程主体只是负责项目核心功能的实现，而辅助任务交由Thread类来实现
+        在进行Thread启动多线程的时候，调用的是start()方法，而后找到run方法。
+            Thread类的构造方法传递的是Runnable接口对象，那么该接口对象将被Thread类中的target属性所保存，start(）方法在执行时会
+        调用run()方法，而run方法调用Runnable接口子类被覆写的run（）方法
+        多线程开发的本质是多个线程可以对统一资源进行抢占。Thread主要描述的是线程，Runnable主要描述的是资源
+    ·callable实现多线程
+        Runnable接口的缺陷：无法获取一个返回值。
+    ·多线程运行状态
+        1.任何一个线程的对象都应该使用Thread类进行封装，所有线程的启动都是用start()，但是启动的时候，若干个进程都处于一种就绪
+        状态，并没有执行
+        2.进入到就绪状态之后就需要等待进行资源的调度，当某个线程调度成功之后进入到运行状态（run()）,所有线程不可能一直处于执
+        行状态，中间会产生一些暂停的状态，例如：当某个线程执行一段时间后就需要让出资源，进入阻塞状态，随后重新进入就绪状态。
+        3.run()方法执行后，实际上该线程的主要任务也将结束，此时直接进入到停止状态。
+    ·多线程操作方法
+        都定义在Thread类中。
+            获取当前线程名称：Thread.currentThread().getName();
+            任何主线程都可以创建若干个子线程，目的在于将复杂的或者耗时的逻辑交给子线程处理。
+                System.out.println("执行耗时流程");
+                new Thread(() -> {
+                    int temp = 0;
+                    for (int x = 0; x < Integer.MAX_VALUE; x++) {
+                        temp += x;
+                    }
+                }).start();
+                System.out.println("执行后续任务");
