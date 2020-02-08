@@ -1291,14 +1291,178 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
         行状态，中间会产生一些暂停的状态，例如：当某个线程执行一段时间后就需要让出资源，进入阻塞状态，随后重新进入就绪状态。
         3.run()方法执行后，实际上该线程的主要任务也将结束，此时直接进入到停止状态。
     ·多线程操作方法
-        都定义在Thread类中。
-            获取当前线程名称：Thread.currentThread().getName();
+        休眠----中断----抢占----礼让
+        获取当前线程名称：Thread.currentThread().getName();
             任何主线程都可以创建若干个子线程，目的在于将复杂的或者耗时的逻辑交给子线程处理。
-                System.out.println("执行耗时流程");
-                new Thread(() -> {
-                    int temp = 0;
-                    for (int x = 0; x < Integer.MAX_VALUE; x++) {
-                        temp += x;
+            System.out.println("执行耗时流程");
+            new Thread(() -> {
+                int temp = 0;
+                for (int x = 0; x < Integer.MAX_VALUE; x++) {
+                    temp += x;
+                }
+            }).start();
+            System.out.println("执行后续任务");
+        线程的休眠：public static void sleep(long millis) throws InterruptedException
+            希望某个线程可以暂缓执行，在休眠时可能会产生中断异常“InterruptedException”
+                new Thread(()->{
+                    for(int x = 0;x<10;x++){
+                        System.out.println(Thread.currentThread().getName()+x);
+                        try{
+                            Thread.sleep(500);
+                        }catch(InterruptedException e){
+                            e.printStackTrace();
+                        }
                     }
                 }).start();
-                System.out.println("执行后续任务");
+            休眠的主要特点在于可以实现线程的唤醒，以继续实现后续的处理，但是现在如果有多个线程，休眠有顺序
+                new Thread(()->{
+                    for(int x = 0;x<10;x++){
+                        System.out.println(Thread.currentThread().getName()+x);
+                        try{
+                            Thread.sleep(500);
+                        }catch(InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }).start();
+            程序的执行变现为：若干个线程一起休眠，一起唤醒。
+        线程中断：Thread.interrupt()
+            线程的休眠可以被其他线程打断，而是被其他线程打断
+                Thread thread = new Thread(()->{
+                    System.out.println("任务开始");
+                    //执行5s
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("任务结束");
+                });
+                thread.start();
+                if (!thread.isInterrupted()){
+                    thread.interrupt();
+                }
+            线程被中断：
+                任务开始
+                java.lang.InterruptedException: sleep interrupted
+                    at java.base/java.lang.Thread.sleep(Native Method)
+                    at testThread.ThreadDemo.lambda$main$0(ThreadDemo.java:67)
+                    at java.base/java.lang.Thread.run(Thread.java:835)
+                任务结束
+        线程强制执行：Thread.join()
+            如果满足某些条件，某一个线程就可以一直独占资源，一直到线程的执行结束。
+                Thread mainThread = Thread.currentThread();
+                Thread thread = new Thread(()->{
+                    for (int x = 0;x<100;x++){
+                        if (x == 3){
+                            try {
+                                mainThread.join();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println(Thread.currentThread().getName()+"x:"+x);
+                    }
+                },"线程A:");
+                thread.start();
+                for (int x = 0;x<100;x++){
+                    Thread.sleep(100);
+                    System.out.println("主线程main："+x);
+                }
+        线程礼让：Thread.yield()
+            将资源让出去让别的线程先执行
+                Thread mainThread = Thread.currentThread();
+                Thread thread = new Thread(()->{
+                    for (int x = 0;x<100;x++){
+                        if (x == 3){
+                            mainThread.yield();
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println(Thread.currentThread().getName()+"x:"+x);
+                    }
+                },"线程A:");
+                thread.start();
+                for (int x = 0;x<100;x++){
+                    Thread.sleep(100);
+                    System.out.println("主线程main："+x);
+                }
+                线程的礼让每次只礼让一次资源。
+    ·线程优先级：
+        理论上线程的优先级越高，越可能优先执行
+        设置优先级:setPriority,获取优先级:getPriority。
+        整型处理（MAX_PRIORITY = 10，NORM_PRIORITY = 5， MIN_PRIORITY = 1）
+            Runnable run = ()->{
+                for (int x = 0;x<10;x++){
+                    System.out.println(Thread.currentThread().getName()+": "+x);
+                }
+            };
+            Thread threadA = new Thread(run,"线程A");
+            Thread threadB = new Thread(run,"线程B");
+            Thread threadC = new Thread(run,"线程C");
+            threadA.setPriority(Thread.MAX_PRIORITY);
+            threadB.setPriority(Thread.MIN_PRIORITY);
+            threadC.setPriority(Thread.MIN_PRIORITY);
+            threadA.start();
+            threadB.start();
+            threadC.start();
+        只是理论上最先执行，不一定绝对最优先.
+14线程同步与死锁
+    ·线程同步和锁
+        当多个线程访问统一资源，就可能出现线程同步的操作。
+        解决线程同步的问题：利用锁。当某一个线程操作时，其他线程等待。
+        利用sysnchroniz关键字定义同步代码块：
+            public void run() {
+                    while(true){
+                        synchronized (this) {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            if (this.ticket > 0) {
+                                System.out.println(Thread.currentThread().getName() + "余票：" + ticket--);
+                            } else {
+                                System.out.println("票卖光了");
+                                break;
+                            }
+                        }
+                    }
+            同步能够实现要求，对资源进行合力处理，但是会降低性能
+    ·死锁问题
+        若干个线程相互等待的问题。
+17 生产者和消费者
+    ·模型：
+        生产者：负责信息内容的生产
+        消费者：每当生产者完成一项完整的信息之后，消费者从中获取信息
+        生产者还没有生产完成，则消费者等待；反之，消费者没有消费完成，生成者等待消费处理。
+    ·解决同步问题
+        synchronized
+    ·线程等待和唤醒:
+        Object类中提供的方法
+            等待机制：
+                public static void wait() throws InterruptException
+                public final void wait(long timeout) throws InterruptException
+                public final void wait(long timeout,int nanos) throws InterruptException
+            唤醒机制
+                public final void notify()
+                public final void notifyAll()
+123类集
+    ·基本概念：
+       一套动态数组的实现方案，传统数组的实现繁琐，且数组长度固定，不利用大范围使用。
+        数据结构的代码实现困难，对于链表，二叉树难以维护和难以保证高性能
+        Collection、List、Set、Map、Iterator、Enumeration、Queue、ListIterator
+    ·Collection常见方法
+        保存单个数据   add(E e)
+        保存一组数据   addAll(Collection<?extends E> e)
+        清空数组       clear()
+        判断是否存在   contains()
+        将结合变为Iterator接口  Iterator()
