@@ -1455,6 +1455,28 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
             唤醒机制
                 public final void notify()
                 public final void notifyAll()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 123类集
     ·基本概念：
        一套动态数组的实现方案，传统数组的实现繁琐，且数组长度固定，不利用大范围使用。
@@ -1466,3 +1488,99 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
         清空数组       clear()
         判断是否存在   contains()
         将结合变为Iterator接口  Iterator()
+125List
+    ·概念：
+        可以保存重复元素。
+        public interface List<E> extends Collection<E>
+        List接口对Collection接口中的方法进行扩充。
+        三个子类：ArrayList，Vector，LinkedList
+            List<String> all = List.of("a", "bb", "ccc", "keran");
+            System.out.println(all);
+            Object result[] = all.toArray();
+            for (Object temp:result){
+                System.out.println(temp);
+            }
+    ·ArrayList：
+        public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, Serializable
+        添加顺序和保存顺序一致，List集合中允许重复数据
+            List<String> l1 = new ArrayList<String>();
+            l1.add("a");
+            l1.add("a");
+            l1.add("aad");
+            System.out.println(l1);
+            l1.forEach((str)->{
+                System.out.print(str+"-");
+            });
+        ArrayList构造函数：
+           无参构造
+           public ArrayList() {
+                this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+           }
+           有参构造
+            public ArrayList(int initialCapacity) {
+                   if (initialCapacity > 0) {
+                       this.elementData = new Object[initialCapacity];
+                   } else if (initialCapacity == 0) {
+                       this.elementData = EMPTY_ELEMENTDATA;
+                   } else {
+                       throw new IllegalArgumentException("Illegal Capacity: "+
+                                                          initialCapacity);
+                   }
+            }
+                ArrayList里实际包含的是一个对象数组，如果在进行数据追加时，ArrayList集合里保存的对象数组的长度不够时，会进
+            行新的数组开辟，同时将原始的旧数组内容copy到新的数组中，而且新的数组的操作大小也会被更新。
+                在实例化ArrayList类对象时，如果没有初始化长度，那么就会默认情况下使用一个空数组，如果在数据增加时，发现数组
+            容量不够时，则会判断当前增长的容量与默认的容量大小，使用较大值进行新的数组开辟。
+            JDK1.9以前，ArrayList默认的构造只会使用默认的空数组，舒勇的时候才会开辟数组，默认的开辟长度为10
+            JDK1.9以后，ArrayList默认的构造实际上就会默认开辟大小为10的数组。
+            当ArrayList之中的保存容量不足时，会依次扩充1.5倍。
+    ·ArrayList保存自定义类
+          List<Person> p = new ArrayList<Person>();
+            p.add(new Person("aa",23));
+            p.add(new Person("bb",34));
+            p.add(new Person("cc",22));
+            p.remove(new Person("aa",23));
+            p.contains(new Person("aa",23));
+
+            p.forEach((person)->{
+                System.out.println(person);
+            });
+          在使用List保存自定义的类对象时需要用到contains(),remove()进行查询和删除时，需要覆写equals（）
+    ·LinledList
+        public class LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, Serializable
+        LinkedList基本使用：
+            基本功能和ArrayList比较类似，但是实现过程不一样
+        ArrayList和LinkedList区别：
+            ArrayList是数组实现的集合，LinkedList是链表实现的集合
+            ArrayList的查询复杂度为O（1），LinkedList的查询复杂度为O（n）
+            ArrayList的初始化长度为10，不足则每次扩充1.5倍，数据处理不当会造成垃圾产生，可以使用LinkedList
+    ·Vector
+        public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, Serializable
+        基本功能和ArrayList比较类似，Vector类方法多采用synchronized同步处理，在多线程使用时，属于线程安全。
+130Set
+    ·基本概念：
+        不允许保存重复的元素，且无法通过索引获取数据（无get方法）
+        public interface Set<E> extends Collection<E>
+        public static void main(String[] args) {
+            Set<String> all = Set.of("aa","bb","cc","aa");
+            System.out.println(all);
+        }
+        重复时抛异常
+        Exception in thread "main" java.lang.IllegalArgumentException: duplicate element: aa
+        	at java.base/java.util.ImmutableCollections$SetN.<init>(ImmutableCollections.java:604)
+        子类HashSet、TreeSet
+    ·HashSet
+        保存数据无序,自动剔除重复数据
+        Set<String> s1 = new HashSet<String>();
+        s1.add("aa");
+        s1.add("aa");
+        s1.add("cc");
+        s1.add("dd");
+        System.out.println(s1);
+    ·TreeSet
+        保存数据有序
+        Set<String>s2 = new TreeSet<String>();
+        s2.add("dd");
+        s2.add("cs");
+        s2.add("aa");
+        System.out.println(s2);
