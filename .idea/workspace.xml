@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c9f72ee-78f6-46e0-b9ee-de54b773db20" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/List/JavaDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/List/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/Iterator/JavaDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/Map/JavaDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/learnJava/src/Collection/Set/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/learnJava/src/classandObject/context" beforeDir="false" afterPath="$PROJECT_DIR$/learnJava/src/classandObject/context" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,21 +27,34 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/context">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="1566" column="9" lean-forward="true" selection-start-line="1566" selection-start-column="9" selection-end-line="1566" selection-end-column="9" />
+            <state relative-caret-position="147">
+              <caret line="1704" column="21" selection-start-line="1704" selection-start-column="21" selection-end-line="1704" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java">
+        <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Map/JavaDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+            <state relative-caret-position="113">
+              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#271#279#0" expanded="true" />
-                <element signature="e#439#447#0" expanded="true" />
+                <element signature="e#297#313#0" expanded="true" />
+                <element signature="e#677#693#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/../JDK-12/lib/src.zip!/java.base/java/util/HashMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="257" column="14" selection-start-line="257" selection-end-line="258" />
+              <folding>
+                <element signature="e#19230#19231#0" expanded="true" />
+                <element signature="e#19313#19314#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,6 +86,10 @@
       <find>start</find>
       <find>异常</find>
       <find>getName</find>
+      <find>DEFAULT_LOAD_FACTOR</find>
+      <find>put</find>
+      <find>putVal</find>
+      <find>TREEIFY_THRESHOLD</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,9 +98,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/learnJava/src/testInterface/Keyboard.java" />
-        <option value="$PROJECT_DIR$/learnJava/src/testInterface/Print.java" />
-        <option value="$PROJECT_DIR$/learnJava/src/testInterface/IFood.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testInterface/Break.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testInterface/Factory.java" />
         <option value="$PROJECT_DIR$/learnJava/src/testInterface/JavaDemo.java" />
@@ -130,7 +145,10 @@
         <option value="$PROJECT_DIR$/learnJava/src/Collection/List/Person.java" />
         <option value="$PROJECT_DIR$/learnJava/src/Collection/List/JavaDemo.java" />
         <option value="$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java" />
+        <option value="$PROJECT_DIR$/learnJava/src/Collection/Set/Person.java" />
+        <option value="$PROJECT_DIR$/learnJava/src/Collection/Iterator/JavaDemo.java" />
         <option value="$PROJECT_DIR$/learnJava/src/classandObject/context" />
+        <option value="$PROJECT_DIR$/learnJava/src/Collection/Map/JavaDemo.java" />
       </list>
     </option>
   </component>
@@ -176,7 +194,7 @@
               <item name="Java_Test" type="462c0819:PsiDirectoryNode" />
               <item name="learnJava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="classandObject" type="462c0819:PsiDirectoryNode" />
+              <item name="Collection" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Java_Test" type="b2602c69:ProjectViewProjectNode" />
@@ -184,6 +202,7 @@
               <item name="learnJava" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Collection" type="462c0819:PsiDirectoryNode" />
+              <item name="Map" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -225,13 +244,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.JavaDemo">
-    <configuration name="JavaDemo (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testLambda.JavaDemo" />
+  <component name="RunManager" selected="Application.JavaDemo (2)">
+    <configuration name="JavaDemo (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Collection.Iterator.JavaDemo" />
       <module name="learnJava" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="testLambda.*" />
+          <option name="PATTERN" value="Collection.Iterator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaDemo (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Collection.Map.JavaDemo" />
+      <module name="learnJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Collection.Map.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -278,26 +310,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ThreadDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testThread.ThreadDemo" />
-      <module name="learnJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testThread.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JavaDemo (2)" />
+        <item itemvalue="Application.JavaDemo (1)" />
         <item itemvalue="Application.JavaDemo" />
         <item itemvalue="Application.JavaDemo (4)" />
         <item itemvalue="Application.ThreadDemo (1)" />
-        <item itemvalue="Application.ThreadDemo" />
-        <item itemvalue="Application.JavaDemo (3)" />
       </list>
     </recent_temporary>
   </component>
@@ -578,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581178752856</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="easy_code">
+      <created>1581258467931</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1581258467932</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TodoView">
@@ -611,7 +637,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.4995958" weight="0.3285968" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.19159256" side_tool="true" weight="0.37655416" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3268206" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49312854" weight="0.3243243" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49312854" weight="0.32252252" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -743,46 +769,6 @@
     </SUITE>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/learnJava/src/textDraw/Factory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/textDraw/JavaDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/textDraw/Triangle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding>
-            <element signature="e#304#305#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric.java" />
-    <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric/Point.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="16" lean-forward="true" selection-end-line="22" />
-          <folding>
-            <element signature="e#106#107#0" expanded="true" />
-            <element signature="e#130#131#0" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#227#228#0" expanded="true" />
-            <element signature="e#282#283#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/learnJava/src/testGeneric/Message.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -1120,25 +1106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/List/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/List/JavaDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="28" selection-start-line="28" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#433#441#0" expanded="true" />
-            <element signature="e#718#726#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/../JDK-12/lib/src.zip!/java.base/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="81">
@@ -1150,21 +1117,94 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/context">
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/List/Person.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="1566" column="9" lean-forward="true" selection-start-line="1566" selection-start-column="9" selection-end-line="1566" selection-end-column="9" />
+        <state relative-caret-position="273">
+          <caret line="26" column="65" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Set/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <folding>
+            <element signature="e#978#979#0" expanded="true" />
+            <element signature="e#1024#1025#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Set/JavaDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="15" column="21" lean-forward="true" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        <state relative-caret-position="108">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#271#279#0" expanded="true" />
-            <element signature="e#439#447#0" expanded="true" />
+            <element signature="e#459#467#0" expanded="true" />
+            <element signature="e#628#636#0" expanded="true" />
+            <element signature="e#889#897#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/List/JavaDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Iterator/JavaDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="52" selection-start-line="52" selection-end-line="59" selection-end-column="9" />
+          <folding>
+            <element signature="e#210#218#0" expanded="true" />
+            <element signature="e#696#704#0" expanded="true" />
+            <element signature="e#1122#1130#0" expanded="true" />
+            <element signature="e#1427#1435#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../JDK-12/lib/src.zip!/java.base/java/util/HashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="257" column="14" selection-start-line="257" selection-end-line="258" />
+          <folding>
+            <element signature="e#19230#19231#0" expanded="true" />
+            <element signature="e#19313#19314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/classandObject/context">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="1704" column="21" selection-start-line="1704" selection-start-column="21" selection-end-line="1704" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/learnJava/src/Collection/Map/JavaDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#297#313#0" expanded="true" />
+            <element signature="e#677#693#0" expanded="true" />
           </folding>
         </state>
       </provider>

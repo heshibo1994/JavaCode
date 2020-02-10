@@ -14,13 +14,29 @@ public class JavaDemo {
         s1.add("aa");
         s1.add("cc");
         s1.add("dd");
-        System.out.println(s1);
+        System.out.println("HashSet: "+s1);
 
         Set<String>s2 = new TreeSet<String>();
         s2.add("dd");
         s2.add("cs");
         s2.add("aa");
-        System.out.println(s2);
+        System.out.println("TreeSet: "+s2);
+
+        Set<Person> p1 = new TreeSet<Person>();
+        p1.add(new Person("a",19));
+        p1.add(new Person("a",19));
+        p1.add(new Person("b",20));
+        p1.add(new Person("c",20));
+        p1.add(new Person("d",19));
+        System.out.println(p1);
+
+        Set<Person> p2 = new HashSet<Person>();
+        p2.add(new Person("a",19));
+        p2.add(new Person("a",19));
+        p2.add(new Person("b",20));
+        p2.add(new Person("c",20));
+        p2.add(new Person("d",19));
+        System.out.println(p2);
     }
 
 }

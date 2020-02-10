@@ -1584,3 +1584,130 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
         s2.add("cs");
         s2.add("aa");
         System.out.println(s2);
+        TreeSet保存的数据允许排序，处理自定义类,自定义的类必须实现Compareble接口才能比较大小。
+        TreeSet本质是利用TreeMap子类实现的集合数据的存储，而TreeMap需要根据Comparable来确定大小。
+        在使用自定义类底线进行比较处理的时候一定要将类中的所有属性进行大小关系的匹配。
+            public int compareTo(Person per) {
+                if(this.age<per.age){
+                    return -1;
+                }else if(this.age>per.age){
+                    return 1;
+                }else{
+                    return this.name.compareTo(per.name);
+                }
+            }
+    ·重复元素清除
+        对象编码：public int hasCode（）
+        对象比较: public boolean equals（）
+            对重复元素进行判断时首先利用hashCode（）进行编码，如果编码不存在，则数据不存在，证明没有重复。如果编码存在，
+        则进一步对对象进行比较处理，如果发现重复了，则数据不允许保存。
+        对比：
+            1、重写的equals()方法里面一般都比较全面，复杂，比较起来的时候效率较低，而利用hashcode()方法进行对比，可以通过hash
+        值进行比较，但由于hash值并不可靠，有时不同的对象会产生相同的hash值。因此hashcode的判断效率高，但只是部分有效。
+            2、equals()相等的两个对象他们的hashCOde肯定相等；
+                hashcode不同的两个对象，equals()也一定不同。
+            3、两个方法一定要同时重写。
+135集合输出
+    ·Iterator
+        Collection多继承Iterable接口，在接口中定义了Iterator（）方法，可以获取Iterator对象
+            public static void main(String[] args) {
+            Set<String> s = new HashSet<String>();
+            s.add("a");
+            s.add("bb");
+            s.add("ccc");
+            s.add("aa");
+            Iterator<String> iter = s.iterator();
+            while(iter.hasNext()){
+                String str = iter.next();
+                if ("ccc".equals(str)){
+                    iter.remove();
+                }else{
+                    System.out.println(str);
+                }
+            }
+            System.out.println(s);
+    ·ListIterator
+        Iterator的子接口，可以由前向后遍历,双向迭代
+            List<String> l = new ArrayList<String>();
+            l.add("a");
+            l.add("bb");
+            l.add("ccc");
+            l.add("aaaa");
+            ListIterator<String> iter_l = l.listIterator();
+            System.out.println("由前向后输出：");
+            while (iter_l.hasNext()){
+                String str_l = iter_l.next();
+                System.out.println(str_l);
+            }
+            System.out.println("由后向前输出：");
+            while(iter_l.hasPrevious()){
+                String str_l = iter_l.previous();
+                System.out.println(str_l);
+            }
+    ·Enumeration
+        只用于Vector类
+            Vector<String> v = new Vector<String>();
+            v.add("a");
+            v.add("bb");
+            v.add("ccc");
+            v.add("d");
+            Enumeration<String> enu = v.elements();
+            while(enu.hasMoreElements()){
+                String str = enu.nextElement();
+                System.out.println(str);
+            }
+    ·foreach
+        与数组输出类似
+            List<String> l1 = new ArrayList<String>();
+            l1.add("a");
+            l1.add("bb");
+            l1.add("ccc");
+            l1.add("d");
+            for(String str:l1){
+                System.out.println(str);
+            }
+139Map
+    ·基本概念
+        以二元偶对象的保存形式来存储
+        Collection集合保存数据目的在于输出，Map集合保存数据的目的在于key的查找
+        public interface Map<K,V>
+            public static void main(String[] args) {
+                Map<String,Integer> m = Map.of("a",1,"b",2);
+                System.out.println(m);
+            }
+        按照key-value形式保存，不能出现空或者null的问题。
+        子类：HashMap,TreeMap,Hashtable,LinkedHashMap
+    ·HashMap
+        public class HashMap<K,​V> extends AbstractMap<K,​V> implements Map<K,​V>, Cloneable, Serializable
+            Map<String,Integer> hm = new HashMap<String,Integer>();
+            hm.put("a",1);
+            hm.put("b",2);
+            hm.put("a",3);//key重复
+            hm.put(null,3);//key不存在
+            hm.put("c",null);//value不存在
+            System.out.println(hm.get("a"));
+            System.out.println(hm.get(null));
+            System.out.println(hm.get("c"));
+        key重复时，返回最新的value值，同时也可以保存空值。
+        构造方法：
+            public HashMap() {
+                this.loadFactor = DEFAULT_LOAD_FACTOR; // all other fields defaulted
+            }
+            当无参构造时，会出现DEFAULT_LOAD_FACTOR（0.75）
+            在HashMap容量扩充原理：
+                初始化时元素的个数大小为16，
+                当保存元素超过（16*0.75）12个时，开始容量扩充。
+                当达到阈值时，会成倍扩充
+            HashMap工作原理：
+                    static final int TREEIFY_THRESHOLD = 8;
+                    当保存的数据没有超过阈值8，则以链表形式保存，反之以红黑树保存
+    ·LinkedHashMap
+        基于链表操作，实现有序存储
+            Map<String ,Integer> lm = new LinkedHashMap<String,Integer>();
+            lm.put("a",1);
+            lm.put("c",3);
+            lm.put("null",0);
+            lm.put("b",2);
+            System.out.println(lm);
+        保存顺序为添加顺序
+
