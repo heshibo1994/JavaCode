@@ -1460,6 +1460,12 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
 
 
 
+26 Java基础类库
+    ·StringBuffer类
+       每一个字符串常量都是String类的匿名对象，不可修改
+       有两个常量池：静态常量池、运行时常量池；
+       直接赋值完成实例化。
+       StringBuffer类可以实现字符串的修改
 
 
 
@@ -1710,4 +1716,81 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
             lm.put("b",2);
             System.out.println(lm);
         保存顺序为添加顺序
-
+    ·Hashtable
+        public class HashMap<K,​V> extends AbstractMap<K,​V> implements Map<K,​V>, Cloneable, Serializable
+            Map<String ,Integer> htm = new Hashtable<String,Integer>();
+            htm.put("a",1);
+            htm.put("c",3);
+            htm.put("b",2);
+            System.out.println(htm);
+        Hashtable的key和value不能保存空值。
+    ·Map.Entry内部接口
+        public static interface Map.Entry<K,​V>
+        所有的key和value都被封装在Map。Entry接口之中，且接口定义如下
+        public static interface Map.Entry<K,V>
+            Map.Entry<String ,Integer> me = Map.entry("one",1);
+            System.out.println(me.getKey());
+            System.out.println(me.getValue());
+            Map.Entry的主要作用就是作为一个Key和Value的包装类型使用，在大部分情况下，在进行数据存储时，都会对key和value包装成一
+        个Map.Entry对象使用。
+    ·Iterator输出Map集合
+        没有直接对Map集合返回Iterator接口的函数
+        因为Map集合里面保存的实际上一组Map.Entry接口对象，map实现的依然是单值的保存。
+        1、首先将Map集合通过EntrySet转化成Set集合
+        2、利用Set接口中的iterator（）方法将Set集合转化为Iterator接口实例
+        3、利用Iterator进行迭代输出。
+            Map<String,Integer> map = new HashMap<String,Integer>();
+            map.put("one",1);
+            map.put("two",2);
+            map.put("three",3);
+            Set<Map.Entry<String,Integer>> set = map.entrySet();
+            Iterator<Map.Entry<String,Integer>> iter = set.iterator();
+            while(iter.hasNext()){
+                Map.Entry<String ,Integer> meitor = iter.next();
+                System.out.print(meitor.getKey()+"---");
+                System.out.println(meitor.getValue());
+            }
+    ·map中key的自定义类型
+        需要在自定义类中覆写equals和hasCode方法
+            Map<Person,String> pmap = new HashMap<Person,String>();
+            pmap.put(new Person("a",20),"one");
+            pmap.put(new Person("b",28),"one");
+            pmap.put(new Person("c",29),"one");
+            System.out.println(pmap.get(new Person("a",20)));
+146 栈
+    是一种先进后出的数据结构，public Stack<E> extends Vector<E>
+        public static void main(String[] args) {
+            Stack<String> stack = new Stack<String>();
+            stack.push("a");
+            stack.push("b");
+            stack.push("c");
+            System.out.println(stack.pop());
+            System.out.println(stack.pop());
+            System.out.println(stack.pop());
+        }
+    倒序输出，空栈异常。
+147 队列
+    一种先进先出的数据结构。
+        public static void main(String[] args) {
+            Queue<String> queue = new LinkedList<String>();
+            queue.offer("a");
+            queue.offer("b");
+            queue.offer("c");
+            System.out.println(queue.poll());
+            System.out.println(queue.poll());
+            System.out.println(queue.poll());
+        }
+148 Properties属性
+    操作类型只能是String,类似于map键值对的使用。
+    可以根据输出流输出属性，也可能使用输入流读取属性内容，用于修改配置文件
+149 Collections工具类
+    对Collection集合进行操作处理
+        public static void main(String[] args) {
+            List<String> l = new ArrayList<String>();
+            Collections.addAll(l,"a","b");
+            System.out.println(l);
+            Collections.reverse(l);
+            System.out.println(l);
+            Collections.sort(l);
+            System.out.println(Collections.binarySearch(l,"c"));
+        }
