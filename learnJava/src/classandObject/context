@@ -1465,7 +1465,114 @@ String类不是一种基本数据类型，利用JVM的支持制造了一种可�
        每一个字符串常量都是String类的匿名对象，不可修改
        有两个常量池：静态常量池、运行时常量池；
        直接赋值完成实例化。
-       StringBuffer类可以实现字符串的修改
+       StringBuffer类可以实现字符串的修改.
+           public static void main(String[] args) {
+               String str = "hello";
+               change(str);
+               System.out.println(str);
+
+               StringBuffer sbuf = new StringBuffer("hello");
+               change(sbuf);
+               System.out.println(sbuf);
+           }
+
+           public static void change(String str){
+               str += "world";
+           }
+           public static void change(StringBuffer str){
+               str.append("world");
+           }
+       一般情况下，不会对String字符串进行修改。String中de "+"调用的是StringBuffer中的append（）方法。
+       StringBuilder类：属于非线程安全
+       StringBuffer类：其中方法都属于线程安全的。
+    ·Charsequence接口
+        描述字符的库类，常见String，StringBuffer，StringBuilder
+    ·AutoCloseable接口
+        主要用于资源开发的处理，用于文件、数据库在使用后的关闭。
+            public static void main(String[] args) throws Exception{
+                try {
+                    IMessage iMessage = new NetMessage("hello");
+                    iMessage.send();
+                }catch (Exception e){}
+            }
+    ·Runtime类
+        描述运行状况，默认提供一个有该类的实例化对象。
+            public static void main(String[] args) {
+                Runtime rt = Runtime.getRuntime();
+                //获取CPU内核数
+                System.out.println(rt.availableProcessors());
+                //获取空间
+                System.out.println(rt.maxMemory());
+                System.out.println(rt.totalMemory());
+                System.out.println(rt.freeMemory());
+                //手工GC
+                rt.gc();
+            }
+        GC:由系统自动调用或者利用Runtime类的gc（）方法进行手动释放。
+    ·System类
+        系统常用类
+            public static void main(String[] args) {
+                long starttime = System.currentTimeMillis();
+                String str = "";
+                for(int x = 0;x<30000;x++){
+                    str = str+x;
+                }
+                long endtime = System.currentTimeMillis();
+                System.out.println("耗时："+(endtime-starttime));
+            }
+    ·Clearner类
+        对象的清理操作，进行finalize（）方法的替代
+    ·对象克隆
+        对象的赋值，Object.clone（）方法
+            public static void main(String[] args) throws CloneNotSupportedException {
+                Person p1 = new Person("a",21);
+                Person p2= (Person)p1.clone();
+                System.out.println(p1);
+                System.out.println(p2);
+            }
+33 Math数学类
+    ·计算类
+        提供大量的数学计算静态方法
+            public static void main(String[] args) {
+                System.out.println(Math.abs(-1));
+                System.out.println(Math.max(2,0.8));
+                System.out.println(Math.round(12.45));
+            }
+    ·Random类
+        产生随机数
+            Random rand = new Random();
+            System.out.println(rand.nextInt(10));
+    ·大数字的操作类
+        对大数字的操作，超过double的数据范围，使用string来保存
+        子类：BigInteger、BigDecimal
+36 Date类
+        public static void main(String[] args) {
+            Date date = new Date();
+            System.out.println(date);
+            long t = date.getTime()+86400000;
+            System.out.println(new Date(t));
+             //格式化
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            String str = sdf.format(date);
+            System.out.println(str);
+38 正则表达式
+    ·基本概念
+        在Java中很多数据的输入都是以String形式完成，正则是对字符串的匹配处理,使用正则进行验证处理。
+            public static void main(String[] args) {
+                String str = "1233";
+                if(str.matches("\\d+")){
+                    int num  = Integer.parseInt(str);
+                    System.out.println(num*2);
+                }
+                 String str = "cusheshibo@163.com";
+                 String regex = "[a-zA-A0-9]\\w+@\\w+\\.(cn|com)";
+                    if(str.matches(regex)){
+                        System.out.println(str);
+                    }
+            }
+
+
+
 
 
 
